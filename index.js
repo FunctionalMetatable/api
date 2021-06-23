@@ -13,9 +13,9 @@ app.get('/gh/user/:user', async (req, res) => {
 
   let { window, document } = parseHTML(await htmlRes.text())
 
-  let status = document.querySelector("div[data-team-hovercards-enabled]").innerText.substring(1) || null
+  let status = document.querySelector("div[data-team-hovercards-enabled]")?.innerText.substring(1) || null
 
-  let emoji = document.querySelector("#js-pjax-container > div.container-xl.px-3.px-md-4.px-lg-5 > div > div.flex-shrink-0.col-12.col-md-3.mb-4.mb-md-0 > div > div.clearfix.d-flex.d-md-block.flex-items-center.mb-4.mb-md-0 > div.position-relative.d-inline-block.col-2.col-md-12.mr-3.mr-md-0.flex-shrink-0 > div > div > div > details > summary > div > div.f6.lh-condensed.user-status-header.d-inline-flex.user-status-emoji-only-header.circle > div > div > g-emoji").innerText
+  let emoji = document.querySelector("#js-pjax-container > div.container-xl.px-3.px-md-4.px-lg-5 > div > div.flex-shrink-0.col-12.col-md-3.mb-4.mb-md-0 > div > div.clearfix.d-flex.d-md-block.flex-items-center.mb-4.mb-md-0 > div.position-relative.d-inline-block.col-2.col-md-12.mr-3.mr-md-0.flex-shrink-0 > div > div > div > details > summary > div > div.f6.lh-condensed.user-status-header.d-inline-flex.user-status-emoji-only-header.circle > div > div > g-emoji")?.innerText
 
   let jsonRes = await fetch(`https://api.github.com/users/${req.params.user}`)
 
