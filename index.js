@@ -26,7 +26,8 @@ app.get('/gh/user/:user', async (req, res) => {
     emoji
   }
 
-  res.json(json)
+  res.header("Access-Control-Allow-Origin", "*") // yay
+  res.status(200).json(json)
 })
 
 export default app
