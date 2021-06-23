@@ -10,12 +10,12 @@
         {
             "src": "/(.*)",
             "dest": "/",
-            "headers": [
-              {
-                "key": "Access-Control-Allow-Origin",
-                "value": "*"
-              }
-            ]
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            }
         }
-    ]
+    ],
+    "github": {
+        "slient": true
+    }
 }
