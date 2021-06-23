@@ -11,8 +11,8 @@
     "url": "git+https://github.com/FunctionalMetatable/api.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "FunctionalMetatable <FunctionalMetatable@users.noreply.github.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/FunctionalMetatable/api/issues"
   },
