@@ -64,25 +64,25 @@ app.get('/scratch/user/:user/activity', async (req, res) => {
     
     let text = el.querySelector("div").innerText
 
-    if (getRegEx("is now following the studio").match(text)) {
+    if (getRegEx("is now following the studio").test(text)) {
       object.type = "follow_studio"
-    } else if (getRegEx("is now following").match(text)) {
+    } else if (getRegEx("is now following").test(text)) {
       object.type = "follow_user"
-    } else if (getRegEx("loved").match(text)) {
+    } else if (getRegEx("loved").test(text)) {
       object.type = "loved_project"
-    } else if (getRegEx("favorited").match(text)) {
+    } else if (getRegEx("favorited").test(text)) {
       object.type = "favorited_project"
-    } else if (getRegEx("shared the project").match(text)) {
+    } else if (getRegEx("shared the project").test(text)) {
       object.type = "shared_project"
-    } else if (getRegEx("was promoted to manager of").match(text)) {
+    } else if (getRegEx("was promoted to manager of").test(text)) {
       object.type = "studio_promotion"
-    } else if (getRegEx("became a curator of").match(text)) {
+    } else if (getRegEx("became a curator of").test(text)) {
       object.type = "studio_membership"
-    } else if (getRegEx("remixed").match(text)) {
+    } else if (getRegEx("remixed").test(text)) {
       object.type = "remixed_project"
       object.remixedProject = object.link2
       object.link2 = undefined
-    } else if (getRegEx("to").match(text)) {
+    } else if (getRegEx("to").test(text)) {
       object.type = "project_added_to_studio"
       object.project = object.actedOn
       object.actedOn = object.link2
