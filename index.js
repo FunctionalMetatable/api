@@ -7,6 +7,10 @@ app.get('/', (req, res) => {
   res.redirect(`https://FunctionalMetatable.github.io/blog/api`) // TODO
 })
 
+function getRegEx(e, t = 'g') {
+  return new RegExp(e, t)
+}
+
 app.get('/gh/user/:user', async (req, res) => {
   // Fetch user status
   let htmlRes = await fetch(`https://github.com/${req.params.user}`)
@@ -60,30 +64,30 @@ app.get('/scratch/user/:user/activity', async (req, res) => {
     
     let text = el.querySelector("div").innerText
 
-    if (/is now following the studio/g.match(text)) {
+    if (getRegEx("is now following the studio").match(text)) {
       object.type = "follow_studio"
-    } else if (/is now following/g.match(text)) {
+    } else if (getRegEx("is now following").match(text)) {
       object.type = "follow_user"
-    } else if (/loved/g.match(text)) {
+    } else if (getRegEx("loved").match(text)) {
       object.type = "loved_project"
-    } else if (/favorited/g.match(text)) {
+    } else if (getRegEx("favorited").match(text)) {
       object.type = "favorited_project"
-    } else if (/shared the project/g.match(text)) {
+    } else if (getRegEx("shared the project").match(text)) {
       object.type = "shared_project"
-    } else if (/was promoted to manager of/g.match(text)) {
+    } else if (getRegEx("was promoted to manager of").match(text)) {
       object.type = "studio_promotion"
-    } else if (/became a curator of/g.match(text)) {
+    } else if (getRegEx("became a curator of").match(text)) {
       object.type = "studio_membership"
-    } else if (/remixed/g.match(text)) {
+    } else if (getRegEx("remixed").match(text)) {
       object.type = "remixed_project"
       object.remixedProject = object.link2
       object.link2 = undefined
-    } else if (/to the studio/g.match(text)) {
+    } else if (getRegEx("to").match(text)) {
       object.type = "project_added_to_studio"
       object.project = object.actedOn
       object.actedOn = object.link2
       object.link2 = null
-    }
+    } else object.type = "unknown"
     console.dir(object)
     objects.push(object)
   })
