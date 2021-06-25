@@ -90,5 +90,5 @@ app.get('/scratch/user/:user/activity', async (req, res) => {
   res.json(objects)
 })
 
-app.listen(2000)
+// app.listen(2000)
 module.exports = app
