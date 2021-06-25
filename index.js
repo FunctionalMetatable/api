@@ -2,6 +2,7 @@ const express = require("express")
 const fetch = require("node-fetch")
 const { parseHTML } = require("linkedom")
 const app = express()
+const prettier = require("prettier")
 
 app.get('/', (req, res) => {
   res.redirect(`https://FunctionalMetatable.github.io/blog/api`) // TODO
@@ -33,7 +34,10 @@ app.get('/gh/user/:user', async (req, res) => {
   }
 
   res.header("Access-Control-Allow-Origin", "*") // yay
-  res.status(200).json(json)
+
+  let data = prettier.format(JSON.stringify(json), { parser: "json" })
+  res.contentType("application/json")
+  res.send(data)
 })
 
 app.get('/scratch/user/:user/activity', async (req, res) => {
@@ -91,7 +95,10 @@ app.get('/scratch/user/:user/activity', async (req, res) => {
     console.dir(object)
     objects.push(object)
   })
-  res.json(objects)
+
+  let data = prettier.format(JSON.stringify(objects), { parser: "json" })
+  res.contentType("application/json")
+  res.send(data)
 })
 
 // app.listen(2000)
