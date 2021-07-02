@@ -101,5 +101,19 @@ app.get('/scratch/user/:user/activity', async (req, res) => {
   res.send(data)
 })
 
+app.get("/scratch/post-count/:user", async (req, res) => {
+  let resp = await fetch(`https://scratchdb.lefty.one/v3/forum/user/info/${req.params.user}/`)
+  let json = await resp.json();
+  var count;
+  try {
+    count = json.counts.total.count;
+  catch(ex) {
+    count = 0
+  }
+    
+  res.json(count)
+})
+
+
 // app.listen(2000)
 module.exports = app
