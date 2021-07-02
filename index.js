@@ -111,7 +111,7 @@ app.get("/scratch/post-count/:user", async (req, res) => {
     count = 0
   }
     
-  res.json(count)
+  res.json({ count })
 })
 
 
