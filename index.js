@@ -119,7 +119,7 @@ app.get("/scratch/cloud-logs/:id/", async (req, res) => {
   var json = await resp.json()
   
   for (let j in json) {
-    json[j].method = json[j].verb.substring(0, json[j].length - 4)
+    json[j].method = json[j].verb.replace("_var", "").replace("del", "delete")
     json[j].verb = undefined
     json[j].timestamp = (new Date(json[j].timestamp)).toISOString()
   }
