@@ -114,6 +114,20 @@ app.get("/scratch/post-count/:user", async (req, res) => {
   res.json({ count })
 })
 
+app.get("/scratch/cloud-logs/:id/", async (req, res) => {
+  let resp = await fetch(`https://clouddata.scratch.mit.edu/logs?projectid=${req.params.id}&offset=${req.query.offset || 0}&limit=${req.query.limit || 100}`)
+  var json = await resp.json()
+  
+  for (let j in json) {
+    json[j].method = json[j].verb.substring(0, json[j].length - 4)
+    json[j].verb = undefined
+    json[j].timestamp = (new Date(json[j].timestamp)).toISOString()
+  }
+  
+  json = prettier.format(JSON.stringify(json), { parser: "json" })
+  res.contentType("application/json")
+  res.send(json)
+})
 
 // app.listen(2000)
 module.exports = app
