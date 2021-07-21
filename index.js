@@ -114,6 +114,13 @@ app.get("/scratch/post-count/:user", async (req, res) => {
   res.json({ count })
 })
 
+app.get("/scratch/messages/:user", async (req, res) => {
+  let resp = await fetch(`https://api.scratch.mit.edu/users/${req.params.user}/messages/count`)
+  let json = await resp.json()
+  res.header("Access-Control-Allow-Origin", "*")
+  res.json( json.count )
+})
+
 app.get("/scratch/cloud-logs/:id/", async (req, res) => {
   let resp = await fetch(`https://clouddata.scratch.mit.edu/logs?projectid=${req.params.id}&offset=${req.query.offset || 0}&limit=${req.query.limit || 100}`)
   var json = await resp.json()
