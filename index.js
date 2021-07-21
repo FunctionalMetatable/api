@@ -115,7 +115,7 @@ app.get("/scratch/post-count/:user", async (req, res) => {
 })
 
 app.get("/scratch/messages/:user", async (req, res) => {
-  let resp = await fetch(`https://api.scratch.mit.edu/users/${req.params.user}/messages/count`)
+  let resp = await fetch(`https://api.scratch.mit.edu/users/${req.params.user}/messages/count`, { headers: { "User-Agent": "Mozilla 5.0" } })
   let json = await resp.json()
   res.header("Access-Control-Allow-Origin", "*")
   res.json( json.count )
