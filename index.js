@@ -136,5 +136,7 @@ app.get("/scratch/cloud-logs/:id/", async (req, res) => {
   res.send(json)
 })
 
+app.get("/scratch/start/please-equal-loves-and-favorites", (_, res) => res.redirect(301, "https://please-equal-loves-and-fav.9gr.repl.co/start_server"))
+
 // app.listen(2000)
 module.exports = app
